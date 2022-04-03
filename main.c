@@ -6,65 +6,76 @@ int main()
 {
     const int true=1;
     const int false=0;
-    int bool;
-    int matrix[3][3]=
+
+    int counter=0;
+    int matrixSize=0;
+    printf("Enter matrix size: ");
+    scanf("%d",&matrixSize);
+    int matrix[matrixSize][matrixSize];
+    printf("Enter matrix elements: \n");
+    for(int i=0;i<matrixSize;i++)
     {
-        {2,7,6},
-        {9,5,1},
-        {4,3,8}
-    };
-    int sums[8];
-    for(int i=0;i<8;i++)
+        for(int j=0;j<matrixSize;j++)
+        {
+            scanf("%d",&matrix[i][j]);
+        }
+    }
+
+    int sumsSize=matrixSize*2+2;
+    int sums[sumsSize];
+    for(int i=0;i<sumsSize;i++)
     {
         sums[i]=0;
     }
-    int counter=0;
-    for(int i=0;i<3;i++)
+
+    for(int i=0;i<matrixSize;i++)
     {
-        for(int j=0;j<3;j++)
+        for(int j=0;j<matrixSize;j++)
         {
             printf("%d ",matrix[i][j]);
         }
         printf("\n");
     }
-    for(int i=0;i<3;i++)
+    for(int i=0;i<matrixSize;i++)
     {
-        for(int j=0;j<3;j++)
+        for(int j=0;j<matrixSize;j++)
         {
             sums[counter]+=matrix[i][j];
         }
         counter++;
     }
-    for(int i=0;i<3;i++)
+    for(int i=0;i<matrixSize;i++)
     {
-        for(int j=0;j<3;j++)
+        for(int j=0;j<matrixSize;j++)
         {
             sums[counter]+=matrix[j][i];
         }
         counter++;
     }
-    for(int i=0;i<3;i++)
+    for(int i=0;i<matrixSize;i++)
     {
         sums[counter]+=matrix[i][i];
     }
     counter++;
-    for(int i=0;i<3;i++)
+    for(int i=0;i<matrixSize;i++)
     {
-        sums[counter]+=matrix[i][3-1-i];
+        sums[counter]+=matrix[i][matrixSize-1-i];
     }
     BOOL isMagic=true;
-    for(int i =0;i<8;i++)
+    for(int i =0;i<sumsSize;i++)
     {
         if(sums[0]!=sums[i])
         {
             isMagic=false;
         }
     }
-    for(int i =0;i<8;i++)
+    for(int i =0;i<sumsSize;i++)
     {
         printf("%d ",sums[i]);
     }
-    if(isMagic){printf("YES");}
-    else printf("NO");
+    printf("\n");
+
+    if(isMagic){printf("It's a magic square!");}
+    else printf("Not a magic square!");
     return 0;
 }
